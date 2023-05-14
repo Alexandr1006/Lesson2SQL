@@ -127,15 +127,11 @@ skypro(# );
 
 //10 задача
 
-skypro=# SELECT first_name, age
+skypro=# SELECT first_name, MAX(age)
 skypro-# FROM employee
-skypro-# WHERE age =(
-skypro(# SELECT MAX(age)
-skypro(# FROM employee
-skypro(# WHERE first_name = 'Konstantin') OR age =(SELECT MAX(age)
-skypro(# FROM employee
-skypro(# WHERE first_name = 'Sergey');
- first_name | age
+skypro-# GROUP BY first_name
+skypro-# HAVING COUNT(first_name) > 1;
+ first_name | max
 ------------+-----
  Konstantin |  20
  Sergey     |  40
